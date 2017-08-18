@@ -13,6 +13,7 @@ console.log(d3);
 // });
 
 var map = new L.map('map').setView([42.32752193319442, -71.07647895812988], 13);
+var path = "boston-businesses/";
 
 
 //Add base layer
@@ -97,8 +98,8 @@ map._initPathRoot();
 
 //Load data, then call runViz
 d3.queue()
-    .defer(d3.json, "/data/stripped_data.geojson")
-    .defer(d3.json, "/data/neighborhoods.geojson")
+    .defer(d3.json,path + "/data/stripped_data.geojson")
+    .defer(d3.json,path + "/data/neighborhoods.geojson")
     .await(runViz);
 
 //Set up map svg and annotation svg
