@@ -13,7 +13,7 @@ console.log(d3);
 // });
 
 var map = new L.map('map').setView([42.32752193319442, -71.07647895812988], 13);
-var path = "boston-businesses/";
+var path = "boston-businesses";
 
 
 //Add base layer
