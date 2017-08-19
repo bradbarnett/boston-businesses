@@ -98,8 +98,8 @@ map._initPathRoot();
 
 //Load data, then call runViz
 d3.queue()
-    .defer(d3.json,"boston-businesses/data/stripped_data.geojson")
-    .defer(d3.json,"boston-businesses/data/neighborhoods.geojson")
+    .defer(d3.json, "/data/stripped_data.geojson")
+    .defer(d3.json, "/data/neighborhoods.geojson")
     .await(runViz);
 
 //Set up map svg and annotation svg
