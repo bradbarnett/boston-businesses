@@ -57,7 +57,7 @@ body {
 #help-div {
     position: absolute;
     top: 50px;
-    margin: auto
+    left: 40%;
     background-color: white;
     opacity: 0.8;
     padding: 10px;
