@@ -54,6 +54,18 @@ body {
     top:2000px;
 }
 
+#help-div {
+    position: absolute;
+    top: 50px;
+    margin: auto
+    background-color: white;
+    opacity: 0.8;
+    padding: 10px;
+    border-radius: 5px;
+    z-index:1001;
+}
+
+
 #controls {
     position: absolute;
     top: 50px;

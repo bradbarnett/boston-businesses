@@ -25,52 +25,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abaf
     // zoomOffset: -1
 }).addTo(map);
 
-// var Shared = new Shared();
-// var urlPath = Shared.getUrl();
-//
-
-// $.getJSON(urlPath + "/data/MBTA-lines.geojson", function (data) {
-//     // add GeoJSON layer to the map once the file is loaded
-//     L.geoJson(data, {
-//         style: function (feature) {
-//             switch (feature.properties.LINE) {
-//                 case 'RED':
-//                     return {
-//                         color: "#d13934",
-//                         opacity: 1,
-//                         weight: 4
-//                     };
-//                 case 'BLUE':
-//                     return {
-//                         color: "#027dc3",
-//                         opacity: 1,
-//                         weight: 4
-//                     };
-//                 case 'ORANGE':
-//                     return {
-//                         color: "#e58c28",
-//                         opacity: 1,
-//                         weight: 4
-//                     };
-//                 case'GREEN':
-//                     return {
-//                         color: "#008f4f",
-//                         opacity: 1,
-//                         weight: 4
-//                     };
-//                 case'SILVER':
-//                     return {
-//                         color: "transparent",
-//                         opacity: 1,
-//                         weight: 4
-//                     };
-//             }
-//         }
-//     }).addTo(map);
-// })
-// ;
-
-
 //Add global variables
 var width = window.innerWidth,
     height = window.innerHeight,
@@ -97,15 +51,15 @@ var width = window.innerWidth,
 map._initPathRoot();
 
 //Load data, then call runViz
-d3.queue()
-    .defer(d3.json, "../boston-businesses/data/stripped_data.geojson")
-    .defer(d3.json, "../boston-businesses/data/neighborhoods.geojson")
-    .await(runViz);
-
 // d3.queue()
-//     .defer(d3.json, "/data/stripped_data.geojson")
-//     .defer(d3.json, "/data/neighborhoods.geojson")
+//     .defer(d3.json, "../boston-businesses/data/stripped_data.geojson")
+//     .defer(d3.json, "../boston-businesses/data/neighborhoods.geojson")
 //     .await(runViz);
+
+d3.queue()
+    .defer(d3.json, "/data/stripped_data.geojson")
+    .defer(d3.json, "/data/neighborhoods.geojson")
+    .await(runViz);
 
 //Set up map svg and annotation svg
 
@@ -116,16 +70,13 @@ var nameText = placeInfoSvg.append("text");
 var reviewsText = placeInfoSvg.append("text");
 
 //Create circles on map
-function runViz(error, points,geojson) {
+function runViz(error, points, geojson) {
     console.log("done");
-
-    // $.getJSON("data/neighborhoods.geojson", function (data) {
-    //     console.log(data)
-        // add GeoJSON layer to the map once the file is loaded
-        districts = L.geoJson(geojson, {
-            onEachFeature: onEachFeature,
-            style: style
-        }).addTo(map);
+    
+    districts = L.geoJson(geojson, {
+        onEachFeature: onEachFeature,
+        style: style
+    }).addTo(map);
     // });
 
     function checkColor(d) {
@@ -179,7 +130,6 @@ function runViz(error, points,geojson) {
             ]
         }
     }
-
 
 
     var lastClickedLayer;
@@ -291,7 +241,7 @@ function runViz(error, points,geojson) {
         .data(pointData)
         .enter()
         .append("circle")
-        .attr("class", function(d) {
+        .attr("class", function (d) {
             if (d.properties.metacategory == "localservices,shopping") {
                 var category = 'shopping'
             }
@@ -303,18 +253,18 @@ function runViz(error, points,geojson) {
             }
             return category + " unselected on"
         })
-        .attr("businessType", function(d) {
-                if (d.properties.metacategory == "localservices,shopping") {
-                    var category = 'shopping'
-                }
-                else if (d.properties.metacategory == "financialservices,professional") {
-                    var category = 'professional'
-                }
-                else {
-                    var category = d.properties.metacategory
-                }
-                return category
-            })
+        .attr("businessType", function (d) {
+            if (d.properties.metacategory == "localservices,shopping") {
+                var category = 'shopping'
+            }
+            else if (d.properties.metacategory == "financialservices,professional") {
+                var category = 'professional'
+            }
+            else {
+                var category = d.properties.metacategory
+            }
+            return category
+        })
         .attr("r", 5);
     pointsUpdate();
     map.on("viewreset", pointsUpdate);
@@ -350,7 +300,7 @@ function runViz(error, points,geojson) {
             return d.Name
         });
         circles.attr("id", 0);
-        circles.attr("fill-opacity",function(d) {
+        circles.attr("fill-opacity", function (d) {
             return (Math.sqrt(oScale(d.properties.reviews) * 0.4))
         })
         // circles.style("fill", function (d) {
@@ -457,17 +407,17 @@ function runViz(error, points,geojson) {
             .style("font-size", "80%");
 
 
-        // var bbox = nameText[0].getBBox();
-        // placeInfoSvg.attr("width", function () {
-        //     if (bbox.width < 300) {
-        //         return 300;
-        //     }
-        //     else {
-        //         nameText.attr("transform", "translate(" + ((bbox.width / 2) - 150) + ",0)");
-        //         reviewsText.attr("transform", "translate(" + ((bbox.width / 2) - 150) + ",0)");
-        //         return (bbox.width);
-        //     }
-        // });
+        var bbox = nameText[0].getBBox();
+        placeInfoSvg.attr("width", function () {
+            if (bbox.width < 300) {
+                return 300;
+            }
+            else {
+                nameText.attr("transform", "translate(" + ((bbox.width / 2) - 150) + ",0)");
+                reviewsText.attr("transform", "translate(" + ((bbox.width / 2) - 150) + ",0)");
+                return (bbox.width);
+            }
+        });
 
 
     });
@@ -538,7 +488,7 @@ function runViz(error, points,geojson) {
 
     }
 
-    function compareData(feature,status) {
+    function compareData(feature, status) {
 
         _totalPlaces = 0,
             _totalreviews = 0,
@@ -668,7 +618,7 @@ function runViz(error, points,geojson) {
 
     }
 
-    function showCircles(callback,param1) {
+    function showCircles(callback, param1) {
 
         function processEachLayer() {
             var yelpmetacategory = d3.selectAll("circle");
@@ -720,27 +670,27 @@ function runViz(error, points,geojson) {
         };
 
         _clickedItem = clickedItem;
-        showCircles(compareData,_activeFeature);
+        showCircles(compareData, _activeFeature);
 
 
     });
 
 
-    // var drawnItems = new L.FeatureGroup();
-    // map.addLayer(drawnItems);
-    //
-    // var drawControl = new L.Control.Draw({
-    //     edit: {
-    //         featureGroup: drawnItems
-    //     }
-    // });
-    // map.addControl(drawControl);
-    //
-    // map.on('draw:created', function (e) {
-    //     var type = e.layerType,
-    //         layer = e.layer;
-    //     drawnItems.addLayer(layer);
-    // });
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+
+    var drawControl = new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems
+        }
+    });
+    map.addControl(drawControl);
+
+    map.on('draw:created', function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+        drawnItems.addLayer(layer);
+    });
 
 }
 

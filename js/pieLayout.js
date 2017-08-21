@@ -18,7 +18,7 @@ var textSvg = d3.select("#total-places").append("svg")
     .style("fill", "gray");
 
 var chartG = chartSvg.append('g').attr("transform", "translate(" + (0) + ",2)");
-var totalG = textSvg.append('g').attr("id","totalG");
+var totalG = textSvg.append('g').attr("id", "totalG");
 
 var chartXScale = d3.scaleLinear().range([chartSvgWidth, 0]);
 var chartYScale = d3.scaleLinear().range([chartSvgHeight, 0]);
@@ -33,42 +33,33 @@ var chartYScale = d3.scaleLinear().range([chartSvgHeight, 0]);
 //     .ticks(10);
 
 
-
-
 function updateBars() {
-  var chartData =
+    var chartData =
         [
             {"name": "restaurants", "status": true, "value": _totalRestaurants},
             {"name": "grocery", "status": true, "value": _totalGrocery},
             {"name": "active", "status": true, "value": _totalActive},
             {"name": "shopping", "status": true, "value": _totalShopping},
             {"name": "bars", "status": true, "value": _totalBars},
-            {"name": "professional", "status": true, "value": _totalProfessionalServices},
-            {"name": "civic", "status": true, "value": _totalCivic}
+            {"name": "professional", "status": true, "value": _totalProfessionalServices}
         ];
 
 
     var clickedItem = _clickedItem;
 
-    if (typeof clickedItem !== 'undefined') {
-        chartData.forEach(function(d) {
-            if (d.name == clickedItem['value']) {
-                d.status = clickedItem.status
-            }
-            if (d.status == false) {
-                d.value = 0;
-            }
-
+    if (typeof _totalPlaces == 'undefined') {
+        console.log(_totalPlaces);
+        chartData.forEach(function (d) {
+            d.value = 0;
         })
     }
-
 
 
     var sumUp = _totalPlaces;
     var chartDataTotal = [{"name": "total", "status": true, "value": _totalPlaces}];
 
     chartXScale.domain([0, d3.max(chartData, function (d) {
-        return d.value ;
+        return d.value;
     }) + 55]);
 
     var barWidth = 16;
@@ -83,8 +74,8 @@ function updateBars() {
 
     bar.transition() //Initiate a transition on all elements in the update selection (all rects)
         .duration(500)
-        .attr("class","chart-bars")
-        .attr("id",function(d) {
+        .attr("class", "chart-bars")
+        .attr("id", function (d) {
             return d.name;
         })
         .attr("x", function (d) {
@@ -108,71 +99,55 @@ function updateBars() {
     //     });
 
 
-
-
     var barText = chartG.selectAll(".bartext")
         .data(chartData);
-
-    barText.enter().append("text")
-
+    console.log(chartData);
+    barText.enter().append("text").attr("class", "bartext");
 
     barText.exit().remove();
 
-    barText.transition()						//Initiate a transition on all elements in the update selection (all rects)
-        .duration(500)
-        .attr("class", "    bartext")
-        .attr("x", function(d) {
-            return chartSvgWidth - chartXScale(d.value) + 5
+    barText.transition().duration(500)
+        .attr("x", function (d) {
+
+            var offset = (d.value > 200) ? -30 : 5;
+            return chartSvgWidth - chartXScale(d.value) + offset;
         })
-        .attr("y",0)
+        .attr("y", 2)
         .attr("dy", ".75em")
-        .attr("name",function(d) {
-            return d.name
+        .attr("name", function (d) {
+            return d.name;
         })
         .attr("transform", function (d, i) {
             var translate = ((i * barWidth) + (7 * i));
             return "translate(0," + translate + ")";
         })
-        .attr("opacity",0)
+        .attr("opacity", 1)
         .text(function (d) {
-            return d.value;
+            var value = (d.value > 0) ? d.value : "";
+            return value;
         });
 
-    bar.on("mouseover", function(d) {
-        var text = barText.filter(function(t) {
-            return t.name == d.name;
-        })
-        text.attr("opacity",1);
-    })
-
-    bar.on("mouseout", function(d) {
-        barText.attr("opacity",0);
-    })
     totalG.selectAll("text").remove();
-    var numberText = totalG.append("text").attr("class","total-places-text");
-    numberText.attr("x",0).attr("y",0).attr("dy", ".75em").text(function() {
+    var numberText = totalG.append("text").attr("class", "total-places-text");
+    numberText.attr("x", 0).attr("y", 0).attr("dy", ".75em").text(function () {
         if (chartDataTotal[0].value > 0) {
             return chartDataTotal[0].value;
         }
         else {
             return "0";
         }
-    }).attr("transform","translate(150,10)");
+    }).attr("transform", "translate(150,10)");
 
 
-    var placesText = totalG.append("text").attr("class","total-places-text-supportive");
-    placesText.attr("x",0).attr("y",0).attr("dy", ".75em").text(function() {
-            return "Places";
-    }).attr("transform","translate(150,65)");
-
+    var placesText = totalG.append("text").attr("class", "total-places-text-supportive");
+    placesText.attr("x", 0).attr("y", 0).attr("dy", ".75em").text(function () {
+        return "Places";
+    }).attr("transform", "translate(150,65)");
 
 
 }
 
 updateBars();
-
-
-
 
 
 function type(d) {
