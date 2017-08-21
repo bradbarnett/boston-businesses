@@ -56,13 +56,18 @@ body {
 
 #help-div {
     position: absolute;
-    top: 50px;
-    left: 40%;
+    top: 5px;
+    left: 0;
     background-color: white;
     opacity: 0.8;
     padding: 10px;
     border-radius: 5px;
-    z-index:1001;
+    z-index: 1001;
+    right: 0;
+    margin: 0 auto;
+    width: 350px;
+    text-align: center;
+    font-size: 80%;
 }
 
 
