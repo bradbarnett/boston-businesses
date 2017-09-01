@@ -17,8 +17,8 @@ var path = "/boston-businesses/";
 
 
 //Add base layer
-// L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
-L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abafgxe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
+L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj5r5xhgf2duy2rl8bqc4juyy/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ',{
+// L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abafgxe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
     // tileSize: 512,
@@ -97,15 +97,15 @@ var width = window.innerWidth,
 map._initPathRoot();
 
 //Load data, then call runViz
-d3.queue()
-    .defer(d3.json, "../boston-businesses/data/stripped_data.geojson")
-    .defer(d3.json, "../boston-businesses/data/neighborhoods.geojson")
-    .await(runViz);
-
 // d3.queue()
-//     .defer(d3.json, "/data/stripped_data.geojson")
-//     .defer(d3.json, "/data/neighborhoods.geojson")
+//     .defer(d3.json, "../boston-businesses/data/stripped_data.geojson")
+//     .defer(d3.json, "../boston-businesses/data/neighborhoods.geojson")
 //     .await(runViz);
+
+d3.queue()
+    .defer(d3.json, "../data/stripped_data.geojson")
+    .defer(d3.json, "../data/neighborhoods.geojson")
+    .await(runViz);
 
 //Set up map svg and annotation svg
 
@@ -328,7 +328,8 @@ function runViz(error, points,geojson) {
         });
         var oScale = d3.scaleLinear()
             .domain([min, max])
-            .range([0.1, 0.5]);
+            .range([0.02, 0.05]);
+            // .range([0.1, 0.5]);
         circles.attr("cx", function (d) {
             return map.latLngToLayerPoint(d.LatLng).x
         });

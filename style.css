@@ -44,7 +44,10 @@ body {
 }
 
 
-
+#blur-slider,#radius-slider {
+    width: 200px;
+    height: 20px;
+}
 
 #exportDiv {
     width: 100%;
@@ -191,7 +194,7 @@ div.station {
     background-color:  rgba(161, 133, 80, 0.42);
     fill:  rgba(161, 133, 80, 0.42);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 
 
 }
@@ -204,7 +207,7 @@ div.station {
     background-color: #ff8a00;
     fill: #ff8a00;
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 
 }
 
@@ -216,7 +219,7 @@ div.station {
     background-color:  rgb(56, 185, 101);
     fill:  rgb(56, 185, 101);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 }
 
 .nightlife,.bars {
@@ -227,7 +230,7 @@ div.station {
     background-color: rgb(143, 106, 156);
     fill: rgb(143, 106, 156);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 }
 
 .shopping {
@@ -238,7 +241,7 @@ div.station {
     background-color: rgb(247, 89, 57);
     fill: rgb(241, 142, 122);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 }
 
 .restaurants {
@@ -249,7 +252,7 @@ div.station {
     background-color: rgb(127, 165, 167);
     fill: rgb(127, 165, 167);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 
 }
 
@@ -261,7 +264,7 @@ div.station {
     background-color: rgba(0, 138, 230,1);
     fill: rgba(0, 138, 230,1);
     stroke: white;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.05;
 }
 
 .ethnicity div {
@@ -327,4 +330,8 @@ input[type='checkbox'] {
     font-size: 85%;
     font-weight: 600;
     transition: border-bottom .3s, color .3s;
+}
+
+.leaflet-heatmap-layer {
+    opacity: .6;
 }
