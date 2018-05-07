@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Strategies Website Testing</title>
+    <!--<link rel="stylesheet" href="/boston-businesses/style.css"/>-->
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:300,400,500,600,700" rel="stylesheet">
+
+</head>
+<body>
+<div class="nav-bar">
+    <button class="nav-button">About</button>
+</div>
+<!--<div id="help-div">Restaurants</div>-->
+<!--<div id="controls">-->
+    <!--<div id="total-places"></div>-->
+    <!--<div id="distance-station" class="label"> in <span id="station">Kendall-MIT</span>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;<div class="label">&ndash;&gt;-->
+<!--&lt;!&ndash;Walking Distance from Transit:&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="distance">5 min</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="slider-container">&ndash;&gt;-->
+
+<!--&lt;!&ndash;<input id="isochrone-slider" type="range" min="0" max="15" step="1" value="5"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div class="layers-chart-container">-->
+<!--<div id="layers">-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" checked=checked class="filter checkbox-yelp"-->
+<!--name="filter" value="restaurants"/></div>-->
+<!--<div class="legend-symbol restaurants"></div>-->
+<!--<div class="legend-title">Restaurants</div>-->
+<!--</div>-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" checked=checked class="filter checkbox-yelp"-->
+<!--name="filter" value="grocery"/></div>-->
+<!--<div class="legend-symbol grocery"></div>-->
+<!--<div class="legend-title">Grocery</div>-->
+<!--</div>-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" class="filter checkbox-yelp"-->
+<!--name="filter" value="active"/></div>-->
+<!--<div class="legend-symbol active"></div>-->
+<!--<div class="legend-title">Fitness/Recreation</div>-->
+<!--</div>-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" class="filter checkbox-yelp"-->
+<!--name="filter" value="localservices,shopping"/></div>-->
+<!--<div class="legend-symbol shopping"></div>-->
+<!--<div class="legend-title">Shopping</div>-->
+<!--</div>-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox"  class="filter checkbox-yelp"-->
+<!--name="filter" value="nightlife"/></div>-->
+<!--<div class="legend-symbol nightlife"></div>-->
+<!--<div class="legend-title">Nightlife</div>-->
+<!--</div>-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" class="filter checkbox-yelp"-->
+<!--name="filter" value="financialservices,professional"/></div>-->
+<!--<div class="legend-symbol professional"></div>-->
+<!--<div class="legend-title">Prof. Services</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<div class="legend-item ethnicity">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="legend-check"><input type="checkbox" class="filter checkbox-yelp"&ndash;&gt;-->
+<!--&lt;!&ndash;name="filter" value="civic"/></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="legend-symbol civic"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="legend-title">Civic</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div class="legend-item ethnicity">-->
+<!--<div class="legend-check"><input type="checkbox" class="filter toggle" id="toggle" name="toggle" value="toggle"/>-->
+<!--</div>-->
+<!--<div class="legend-title">-->
+<!--Select All-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="ethnicity">-->
+<!--<img src = "circles.png">-->
+<!--<div class="legend-title">-->
+<!--Number of Reviews-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div id="bar-chart"></div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div id="places-info"></div>-->
+<div id="map">
+</div>
+<div id="dropdown">
+    <form>
+        <select class="strategies">
+            <option value="restaurants">Restaurants</option>
+            <option value="localservices,shopping">Shopping</option>
+            <option value="nightlife">Nightlife</option>
+        </select>
+    </form>
+</div>
+<div id="exportDiv"></div>
+<!--<script src="/Shared.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+<!--<script src="/boston-businesses/js/d3js/d3.min.js"></script>-->
+<!--<script src="/boston-businesses/js/main.js"></script>-->
+<!--<script src="/boston-businesses/js/pieLayout.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.js"></script>
+<script src="/js/d3js/d3.min.js"></script>
+<script src="/js/main-strategies.js"></script>
+<script src="/js/pieLayout.js"></script>
+</body>
+</html>

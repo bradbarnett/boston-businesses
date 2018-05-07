@@ -19,8 +19,9 @@ var path = "/boston-businesses/";
 //Add base layer
 // L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4wwddac2aq12rmsagbsp1fd/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ',{ //Dark Heatmap
 //Dark L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj5r5xhgf2duy2rl8bqc4juyy/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ',{
- L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abafgxe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+//  L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abafgxe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
+ L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj8niq92t2xpc2ss9tgpqosel/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
+attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
     // tileSize: 512,
     // zoomOffset: -1
@@ -29,7 +30,6 @@ var path = "/boston-businesses/";
 // var Shared = new Shared();
 // var urlPath = Shared.getUrl();
 //
-
 // $.getJSON(urlPath + "/data/MBTA-lines.geojson", function (data) {
 //     // add GeoJSON layer to the map once the file is loaded
 //     L.geoJson(data, {
@@ -105,7 +105,6 @@ map._initPathRoot();
 
 d3.queue()
     .defer(d3.json, "../data/stripped_data.geojson")
-    .defer(d3.json, "../data/neighborhoods.geojson")
     .await(runViz);
 
 //Set up map svg and annotation svg
@@ -117,16 +116,16 @@ var nameText = placeInfoSvg.append("text");
 var reviewsText = placeInfoSvg.append("text");
 
 //Create circles on map
-function runViz(error, points,geojson) {
+function runViz(error, points) {
     console.log("done");
 
     // $.getJSON("data/neighborhoods.geojson", function (data) {
     //     console.log(data)
         // add GeoJSON layer to the map once the file is loaded
-        districts = L.geoJson(geojson, {
-            onEachFeature: onEachFeature,
-            style: style
-        }).addTo(map);
+        // districts = L.geoJson(geojson, {
+        //     onEachFeature: onEachFeature,
+        //     style: style
+        // }).addTo(map);
     // });
 
     function checkColor(d) {
@@ -355,35 +354,35 @@ function runViz(error, points,geojson) {
         circles.attr("fill-opacity",function(d) {
             return (Math.sqrt(oScale(d.properties.reviews) * 0.4))
         })
-        circles.attr("fill", function (d) {
-            if (d.properties.metacategory == "restaurants") {
-                return "rgb(210, 84, 249)";
-            }
-            else if (d.properties.metacategory == "grocery") {
-                return "rgb(252,255,0)";
-            }
-            else if (d.properties.metacategory == "active") {
-                return "rgb(255, 160, 19)";
-            }
-            else if (d.properties.metacategory == "localservices,shopping") {
-                return "rgb(222, 109, 80)";
-            }
-            else if (d.properties.metacategory == "nightlife") {
-                return "rgb(0, 204, 102)";
-            }
-            else if (d.properties.metacategory == "financialservices,professional") {
-                return "rgb(153, 153, 10)";
-            }
-            else if (d.properties.metacategory == "health") {
-                return "rgb(153, 153, 10)"
-            }
-            else if (d.properties.metacategory == "civic") {
-                return "rgb(0, 138, 230)";
-            }
-            else {
-                return "rgb(0,0,0)";
-            }
-        })
+        // circles.style("fill", function (d) {
+        //     if (d.properties.metacategory == "restaurants") {
+        //         return "rgba(210, 84, 249," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "grocery") {
+        //         return "rgba(252,255,0," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "active") {
+        //         return "rgba(255, 160, 19," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "localservices,shopping") {
+        //         return "rgba(222, 109, 80," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "nightlife") {
+        //         return "rgba(0, 204, 102," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "financialservices,professional") {
+        //         return "rgba(153, 153, 102," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "health") {
+        //         return "rgba(153, 153, 102," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else if (d.properties.metacategory == "civic") {
+        //         return "rgba(0, 138, 230," + (Math.sqrt(oScale(d.properties.reviews) * 0.4)) + ")";
+        //     }
+        //     else {
+        //         return "rgba(0,0,0,0)";
+        //     }
+        // })
         circles.style("stroke-width", 1);
         // circles.style("stroke", function (d) {
         //     if (d.properties.metacategory == "restaurants") {
@@ -416,7 +415,7 @@ function runViz(error, points,geojson) {
         // })
     }
 
-    showCircles();
+    // showCircles();
     circles.on("mouseover", function (d) {
 
 
@@ -670,7 +669,12 @@ function runViz(error, points,geojson) {
 
     }
 
+
+
     function showCircles(callback,param1) {
+
+
+
 
         function processEachLayer() {
             var yelpmetacategory = d3.selectAll("circle");
@@ -715,17 +719,31 @@ function runViz(error, points,geojson) {
     }
 
 
-    $(".filter").click(function () {
+    $(".strategies").on("change",function () {
         var clickedItem = {
             "value": this.value,
             "status": this.checked
         };
 
+        console.log(clickedItem.value);
         _clickedItem = clickedItem;
-        showCircles(compareData,_activeFeature);
+
+        $("#help-div").hide();
+        $("#help-div").html($(".strategies option:selected").html());
+        $("#help-div").fadeIn(1000);
+        showCirclesStrategies();
+        // showCircles(compareData,_activeFeature);
 
 
     });
+
+    function showCirclesStrategies() {
+        d3.selectAll("circle").classed("off",true).classed("on",false);
+        var selected = d3.selectAll("circle").filter(function(d) {
+            return d.properties.metacategory == _clickedItem.value
+        })
+        selected.classed("on",true).classed("off",false);
+    }
 
 
     // var drawnItems = new L.FeatureGroup();

@@ -52,8 +52,8 @@ var map = new L.Map("map", {
 });
 
 //Add base layer
-// L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
-L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj5r5xhgf2duy2rl8bqc4juyy/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
+// L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj4vmkcmh14ma2sl9abafgxe4/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
+L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj7d98skc0o502sln1io8j0sa/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYnJhZHJiYXJuZXR0IiwiYSI6ImNqNGJhYnR6NjA4N2MzMnFwOWs2NjZ5ZzUifQ.ZtaKJSasjfx5Pl5D3raQkQ', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19
     // tileSize: 512,
@@ -61,7 +61,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/bradrbarnett/cj5r5xhgf2duy2rl8bqc4
 }).addTo(map);
 
 
-$.getJSON("data/0500-midnight.geojson", function (data) {
+$.getJSON("data/1200-0500.geojson", function (data) {
     console.log(data.features);
     // add GeoJSON layer to the map once the file is loaded
     earlyMorningLocations = data.features.map(function(d) {
@@ -74,7 +74,7 @@ $.getJSON("data/0500-midnight.geojson", function (data) {
     var _heat = L.heatLayer(earlyMorningLocations,{
         blur: blurValue,
         radius: radiusValue,
-        gradient: {0: 'transparent', 0.6: "#E8E867", 0.3: '#30BBCE'}
+        gradient: {0: 'transparent', 0.1: '#7766c2',0.3: "#FF00C9", .5: "rgba(253,237,93,.5)"}
 
     }).addTo(map);
 

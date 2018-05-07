@@ -1,0 +1,355 @@
+@font-face {
+    font-family: ‘Korolev’;
+    src: url('css/KorolevLight.otf');
+}
+
+html,body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Korolev';
+    /*font-family: 'Inconsolata', sans-serif;*/
+    font-size: 16px;
+    margin: 0;
+    position: relative;
+    height: inherit;
+}
+
+#map{
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*svg {*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
+
+#places-info {
+    position: absolute;
+    display: block;
+    background-color: transparent;
+    height: 50px;
+    width: 100%;
+    left: 0;
+    bottom: 25px;
+    opacity: 0;
+    text-align: center;
+    z-index: 1001;
+}
+
+.places-info-svg {
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    text-anchor: middle;
+}
+
+
+#blur-slider,#radius-slider {
+    width: 200px;
+    height: 20px;
+}
+
+#exportDiv {
+    width: 100%;
+    height: 2000px;
+    background-color: gray;
+    position: absolute;
+    top:2000px;
+}
+
+#help-div {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    background-color: white;
+    opacity: 0.5;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1001;
+    right: 0;
+    margin: 0 auto;
+    width: 165px;
+    text-align: center;
+    font-size: 200%;
+}
+
+
+#controls {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color: white;
+    opacity: 0.8;
+    padding: 10px;
+    border-radius: 2px;
+    z-index:1001;
+}
+
+div.distance {
+    display: inline;
+    color: #28c5c9;
+    font-weight: 700;
+}
+
+div.slider-container{
+    display: block;
+    text-align: center;
+    margin: 25px 0;
+}
+
+div#distance-station {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+div.station {
+    fill: #28c5c9;
+}
+
+.total-places-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 400%;
+    fill: #28c5c9;
+    text-anchor: middle;
+}
+
+.total-places-text-supportive {
+    text-align: center;
+    font-weight: 600;
+    text-anchor: middle;
+}
+
+#isochrone-slider {
+    width: 200px;
+}
+
+.layers-chart-container {
+    width: 300px;
+    height: 200px;
+    display: block;
+}
+
+
+#layers {
+    float: left;
+    width: 175px;
+    display: inline-block;
+}
+
+#bar-chart {
+    float: left;
+    height: 150px;
+    width: 125px;
+    display: inline-block;
+}
+
+.geojson-hide {
+    fill: black;
+    opacity: 0;
+}
+
+.geojson-show {
+    fill: #b9c8cc;
+    opacity: 0.5;
+    stroke-width: 1;
+    stroke:black;
+}
+
+.geojson-layered {
+    fill: #b9c8cc;
+    opacity: 0.5;
+    stroke-width: 1;
+    stroke:black;
+}
+
+/*.selected {*/
+    /*opacity: 1;*/
+    /*stroke-width: 5;*/
+/*}*/
+
+/*.unselected {*/
+    /*fill: gray;*/
+    /*!*opacity: 0.8;*!*/
+/*}*/
+
+.legend-symbol {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.chart-bars {
+    fill: lightgray;
+    stroke: dimgray;
+    stroke-width: 0.75;
+}
+
+/*.professional {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color:  rgba(161, 133, 80, 0.42);*/
+    /*fill:  rgba(161, 133, 80, 0.42);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+/*}*/
+
+/*.grocery {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color: #ff8a00;*/
+    /*fill: #ff8a00;*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+
+/*}*/
+
+/*.active {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color:  rgb(56, 185, 101);*/
+    /*fill:  rgb(56, 185, 101);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+/*}*/
+
+/*.nightlife,.bars {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color: rgb(143, 106, 156);*/
+    /*fill: rgb(143, 106, 156);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+/*}*/
+
+/*.shopping {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color: rgb(247, 89, 57);*/
+    /*fill: rgb(241, 142, 122);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+/*}*/
+
+/*.restaurants {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color: rgb(127, 165, 167);*/
+    /*fill: rgb(127, 165, 167);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+
+/*}*/
+
+/*.civic {*/
+    /*!*width: 2rem;*!*/
+    /*!*height: 1rem;*!*/
+    /*!*display: inline-block;*!*/
+    /*!*font-size: 120%;*!*/
+    /*background-color: rgba(0, 138, 230,1);*/
+    /*fill: rgba(0, 138, 230,1);*/
+    /*stroke: white;*/
+    /*stroke-opacity: 0.05;*/
+/*}*/
+
+.nightlife,.shopping,.restaurants {
+    /*fill: rgba(137,186,0,0.7);*/
+    transition: 0.5s all;
+}
+
+.ethnicity div {
+    display: inline-block;
+}
+
+.ethnicity {
+    margin-bottom: 5px;
+}
+
+.ethnicity * {
+    vertical-align: middle;
+    font-size: 80%;
+}
+
+input[type='checkbox'] {
+    font-size: 100%;
+}
+
+.on {
+    display: initial;
+    fill: rgba(137,186,0,0.7);
+    transition: fill 5s;
+}
+
+.off {
+    display: none;
+    fill: rgba(0,0,0,0);
+}
+
+#dropdown {
+position: absolute;
+    bottom:0px;
+    right: 0px;
+    z-index: 1000;
+}
+
+
+/*//////*/
+
+
+
+#nav {
+    float: left;
+    margin-right: 30px;
+}
+
+#nav button {
+    border-radius: 0;
+    padding: 1px 3px;
+    background-color: transparent;
+    color: rgba(65, 87, 95, .7);
+    /* border-right: 1px solid; */
+    margin-right: 10px;
+    font-family: 'baskerville', serif;
+    font-size: 85%;
+    font-weight: 600;
+    transition: border-bottom .3s, color .3s;
+
+}
+
+
+#nav button:hover {
+    border-radius: 0;
+    padding: 1px 3px;
+    background-color: transparent;
+    color: rgba(65, 87, 95, .9);
+    border-bottom: 2px solid;
+    /* border-right: 1px solid; */
+    margin-right: 10px;
+    font-family: 'baskerville', serif;
+    font-size: 85%;
+    font-weight: 600;
+    transition: border-bottom .3s, color .3s;
+}
+
+.leaflet-heatmap-layer {
+    opacity: 1;
+}

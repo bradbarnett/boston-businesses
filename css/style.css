@@ -1,9 +1,15 @@
+@font-face {
+    font-family: ‘Korolev’;
+    src: url('css/KorolevLight.otf');
+}
+
 html,body {
     height: 100%;
 }
 
 body {
-    font-family: 'Inconsolata', sans-serif;
+    font-family: 'Korolev';
+    /*font-family: 'Inconsolata', sans-serif;*/
     font-size: 16px;
     margin: 0;
     position: relative;
@@ -62,15 +68,15 @@ body {
     top: 5px;
     left: 0;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.5;
     padding: 10px;
     border-radius: 5px;
     z-index: 1001;
     right: 0;
     margin: 0 auto;
-    width: 350px;
+    width: 165px;
     text-align: center;
-    font-size: 80%;
+    font-size: 200%;
 }
 
 
@@ -163,15 +169,15 @@ div.station {
     stroke:black;
 }
 
-.selected {
-    opacity: 1;
-    stroke-width: 5;
-}
+/*.selected {*/
+    /*opacity: 1;*/
+    /*stroke-width: 5;*/
+/*}*/
 
-.unselected {
-    fill: gray;
-    /*opacity: 0.8;*/
-}
+/*.unselected {*/
+    /*fill: gray;*/
+    /*!*opacity: 0.8;*!*/
+/*}*/
 
 .legend-symbol {
     width: 1rem;
@@ -195,8 +201,6 @@ div.station {
     fill:  rgba(161, 133, 80, 0.42);
     stroke: white;
     stroke-opacity: 0.05;
-
-
 }
 
 .grocery {
@@ -267,6 +271,11 @@ div.station {
     stroke-opacity: 0.05;
 }
 
+.nightlife,.shopping,.restaurants {
+    /*fill: rgba(137,186,0,0.7);*/
+    transition: 0.5s all;
+}
+
 .ethnicity div {
     display: inline-block;
 }
@@ -284,14 +293,23 @@ input[type='checkbox'] {
     font-size: 100%;
 }
 
-.on {
-    display: initial;
-}
+/*.on {*/
+    /*display: initial;*/
+    /*fill: rgba(137,186,0,0.4);*/
+    /*transition: fill 5s;*/
+/*}*/
 
-.off {
-    display: none;
-}
+/*.off {*/
+    /*display: none;*/
+    /*fill: rgba(0,0,0,0);*/
+/*}*/
 
+#dropdown {
+position: absolute;
+    bottom:0px;
+    right: 0px;
+    z-index: 1000;
+}
 
 
 /*//////*/
@@ -333,5 +351,5 @@ input[type='checkbox'] {
 }
 
 .leaflet-heatmap-layer {
-    opacity: .6;
+    opacity: 1;
 }
